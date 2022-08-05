@@ -1,6 +1,8 @@
 import os
+import numpy as np
 import streamlit as st
-import skimage
+from PIL import Image
+
 
 def get_image():
     '''
@@ -9,8 +11,8 @@ def get_image():
     :return: numpy array that is the image
     '''
     os.system('curl https://thispersondoesnotexist.com/image > image.jpg')
-    image_numpy = skimage.io.imread('image.jpg')
-    return image_numpy
+    img = Image.open('image.jpg')
+    return np.asarray(img, dtype="int32")
 
 if __name__ == '__main__':
     st.title("AI generated faces")
